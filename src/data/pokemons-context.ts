@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-let pokemons:string[] = [];
-fetch('https://pokeapi.co/api/v2/pokemon/')
-.then(response => response.json())
-.then(data => pokemons=data.results);
-//export type PokemonType='agua'|'fuego'|'planta';
+import React from "react";
 export interface Pokemon{
+    base_experience:number,
     id:string,
     name:string,
+    weight:number,
     type:string,
     imgUrl:string
 }
 export interface PokemonsContextModel{
     pokemons:Pokemon[];
+    detailsPokemon:(pokemonId:string)=>void;
 }
 const PokemonsContext = React.createContext<PokemonsContextModel>({
     pokemons:[],
+    detailsPokemon:()=>{}
 });
 
 export default PokemonsContext;
