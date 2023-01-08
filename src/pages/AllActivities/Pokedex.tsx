@@ -2,7 +2,7 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, Ion
 import React, { useState,useContext, useEffect } from "react";
 import PokemonsContext from "../../data/pokemons-context";
 // estilos personalizados
-import classes from './allActivities.module.css';
+import classes from './pokedex.module.css';
 const AllPokemons: React.FC=()=>{
     const pokemonsCtxt=useContext(PokemonsContext);
     const [state,setState]=useState([{
@@ -46,7 +46,7 @@ const AllPokemons: React.FC=()=>{
                     <IonButton slot="start">
                         <IonMenuButton/>
                     </IonButton>
-                    <IonTitle>All Pokemons</IonTitle>
+                    <IonTitle>Pokedex</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
