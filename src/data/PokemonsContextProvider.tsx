@@ -15,7 +15,7 @@ const PokemonsContextProvider:React.FC<Props>=(props)=>{
         },
     ]);
     useEffect(()=>{
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0')
         .then(response => response.json())
         .then(data =>{
             let result = data.results;

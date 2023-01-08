@@ -37,7 +37,6 @@ const AllPokemons: React.FC=()=>{
               unicos.push(pokemon);
             }
         }
-        console.log(unicos);
         setState(unicos);
     },[activitiesCtxt])
     return(
