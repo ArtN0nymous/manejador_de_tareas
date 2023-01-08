@@ -22,9 +22,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import AllActivities from './pages/AllActivities/Pokedex';
 import AddActivities from './pages/AddActivities/AddActivities';
-import {bodyOutline,addCircle, playCircle} from 'ionicons/icons';
+import {bodyOutline,addCircle, playCircle, bookmarks} from 'ionicons/icons';
 import PokemonsContextProvider from './data/PokemonsContextProvider';
 import AllPokemons from './pages/AllPokemons/AllPokemons';
+import PokemonDetails from './pages/PokemonDetails/PokemonDetails';
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -34,7 +35,7 @@ const App: React.FC = () => (
         <IonHeader>
           <IonToolbar color='primary'>
             <IonTitle>
-              All Activities
+              Pokemons
             </IonTitle>
           </IonToolbar>
         </IonHeader>
@@ -42,8 +43,8 @@ const App: React.FC = () => (
           <IonList>
           <IonMenuToggle>
               <IonItem routerLink='/all-activities' routerDirection='none' lines='none'>
-                <IonIcon color='medium' slot='start' icon={bodyOutline}/>
-                <IonLabel> All Activities</IonLabel>
+                <IonIcon color='medium' slot='start' icon={bookmarks}/>
+                <IonLabel>Pokedex</IonLabel>
               </IonItem>
             </IonMenuToggle>
             <IonMenuToggle>
@@ -67,6 +68,7 @@ const App: React.FC = () => (
             <Route path="/all-activities" component={AllActivities}/>
             <Route path="/add-activities" component={AddActivities}/>
             <Route path="/all-pokemons" component={AllPokemons}/>
+            <Route path="/PokemonDetails/:name" component={PokemonDetails}/>
             <Redirect to="/all-activities"/>
         </IonRouterOutlet>
       </PokemonsContextProvider>

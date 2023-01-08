@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from "react";
+import { types } from "util";
 import PokemonsContext, { PokemonContextModel, Pokemon} from "./pokemons-context";
 interface Props {
     children: React.ReactNode;
@@ -17,11 +18,15 @@ const PokemonsContextProvider:React.FC<Props>=(props)=>{
                 .then(res=>res.json())
                 .then(data=>{
                     fetch(data.forms[0].url).then(r=>r.json()).then(img=>{
+                        let tipo = '';
+                        for(var i=0;i<data.types.length;i++){
+                            tipo+=" "+data.types[i].type.name;
+                        }
                         let pokemon:Pokemon={
                             id:data.id,
                             base_experience:data.base_experience,
                             name:data.name,
-                            type:data.types[0].type.name,
+                            type:tipo,
                             weight:data.weight,
                             imgUrl:img.sprites.front_default
                         }

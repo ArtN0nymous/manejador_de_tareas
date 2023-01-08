@@ -55,7 +55,7 @@ const AllPokemons: React.FC=()=>{
                         state.map(item=>(
                             <IonRow key={Math.random()}>
                                 <IonCol className="ion-text-center">
-                                    <IonCard>
+                                    <IonCard routerLink={"/PokemonDetails/"+item.name}>
                                         <img src={item.imgUrl} alt='pokemon'/>
                                         <IonCardHeader>
                                             <IonCardTitle>{item.name}</IonCardTitle>
