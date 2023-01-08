@@ -15,7 +15,6 @@ const PokemonsContextProvider:React.FC<Props>=(props)=>{
         },
     ]);
     useEffect(()=>{
-        let pokemon_base:Pokemon[]=[];
         fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
         .then(response => response.json())
         .then(data =>{
@@ -26,18 +25,19 @@ const PokemonsContextProvider:React.FC<Props>=(props)=>{
                 fetch(element.url)
                 .then(res=>res.json())
                 .then(data=>{
-                    let pokemon:Pokemon={
+                    fetch(data.forms[0].url).then(r=>r.json()).then(img=>{
+                        let pokemon:Pokemon={
                             id:data.id,
                             base_experience:data.base_experience,
                             name:data.name,
-                            type:data.type,
+                            type:data.types[0].type.name,
                             weight:data.weight,
-                            imgUrl:''
+                            imgUrl:img.sprites.front_default
                         }
-                    //pokemon_base.push(pokemon);
-                    setPokemons(currPok=>{
-                        return[...currPok,pokemon];
-                    })
+                        setPokemons(currPok=>{
+                            return[...currPok,pokemon];
+                        });
+                    });
                 });
             });
         });
