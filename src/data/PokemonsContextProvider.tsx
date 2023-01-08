@@ -4,16 +4,7 @@ interface Props {
     children: React.ReactNode;
 }
 const PokemonsContextProvider:React.FC<Props>=(props)=>{
-    const [pokemons,setPokemons]=useState<Pokemon[]>([
-        {
-            base_experience:10,
-            id:'1',
-            name:'prueba',
-            weight:10,
-            type:'tipo',
-            imgUrl:'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
-        },
-    ]);
+    const [pokemons,setPokemons]=useState<Pokemon[]>([]);
     useEffect(()=>{
         fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0')
         .then(response => response.json())

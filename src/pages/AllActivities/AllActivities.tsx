@@ -4,7 +4,7 @@ import PokemonsContext from "../../data/pokemons-context";
 // estilos personalizados
 import classes from './allActivities.module.css';
 const AllPokemons: React.FC=()=>{
-    const activitiesCtxt=useContext(PokemonsContext);
+    const pokemonsCtxt=useContext(PokemonsContext);
     const [state,setState]=useState([{
         id:'',
         type:'',
@@ -13,7 +13,7 @@ const AllPokemons: React.FC=()=>{
         name:''
     }]);
     useEffect(()=>{
-        let data = activitiesCtxt.pokemons;
+        let data = pokemonsCtxt.pokemons;
         let unicos:any=[];
         //recorre el arreglo para ver elemento por elemento
         for(var i = 0; i < data.length; i++) {
@@ -38,7 +38,7 @@ const AllPokemons: React.FC=()=>{
             }
         }
         setState(unicos);
-    },[activitiesCtxt])
+    },[pokemonsCtxt]);
     return(
         <IonPage>
             <IonHeader>
