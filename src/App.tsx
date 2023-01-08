@@ -23,7 +23,7 @@ import './theme/variables.css';
 import AllActivities from './pages/AllActivities/AllActivities';
 import AddActivities from './pages/AddActivities/AddActivities';
 import {bodyOutline,addCircle, playCircle} from 'ionicons/icons';
-import ActivitiesContextProvider from './data/ActivitiesContextProvider';
+import PokemonsContextProvider from './data/PokemonsContextProvider';
 import AllPokemons from './pages/AllPokemons/AllPokemons';
 setupIonicReact();
 
@@ -62,14 +62,14 @@ const App: React.FC = () => (
         </IonContent>
       </IonMenu>
       {/* se creó un contexto y se envolvió la funcionalidad de la aplicacion con este mismo */}
-      <ActivitiesContextProvider>
+      <PokemonsContextProvider>
         <IonRouterOutlet id='scheduleAppM1'>
             <Route path="/all-activities" component={AllActivities}/>
             <Route path="/add-activities" component={AddActivities}/>
             <Route path="/all-pokemons" component={AllPokemons}/>
             <Redirect to="/all-activities"/>
         </IonRouterOutlet>
-      </ActivitiesContextProvider>
+      </PokemonsContextProvider>
     </IonReactRouter>
   </IonApp>
 );

@@ -1,14 +1,10 @@
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
 import React, { useState,useContext } from "react";
-import ActivitiesContext from "../../data/activities-context";
+import PokemonsContext from "../../data/pokemons-context";
 // estilos personalizados
 import classes from './allActivities.module.css';
-const AllActivities: React.FC=()=>{
-    
-    const pokemonList =()=>{
-        return(<></>)
-    }
-    const activitiesCtxt=useContext(ActivitiesContext);
+const AllPokemons: React.FC=()=>{
+    const activitiesCtxt=useContext(PokemonsContext);
     return(
         <IonPage>
             <IonHeader>
@@ -16,25 +12,25 @@ const AllActivities: React.FC=()=>{
                     <IonButton slot="start">
                         <IonMenuButton/>
                     </IonButton>
-                    <IonTitle>All activities</IonTitle>
+                    <IonTitle>All Pokemons</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
                 <IonGrid>
                     {
-                        activitiesCtxt.activities.map(item=>(
+                        activitiesCtxt.pokemons.map(item=>(
                             <IonRow key={item.id}>
                                 <IonCol className="ion-text-center">
                                     <IonCard>
-                                        <img src={item.imageUrl} alt='Activity'/>
+                                        <img src={item.imgUrl} alt='pokemon'/>
                                         <IonCardHeader>
-                                            <IonCardTitle>{item.hour}</IonCardTitle>
-                                            <IonCardSubtitle>{item.title}</IonCardSubtitle>
+                                            <IonCardTitle>{item.name}</IonCardTitle>
+                                            <IonCardSubtitle>Experiencia base: {item.base_experience}</IonCardSubtitle>
                                         </IonCardHeader>
                                         <IonCardContent>
-                                            <p>{item.description}</p>
+                                            <p>Tipo: {item.type}</p>
                                             <IonItem lines='none'>
-                                                <IonButton fill="clear" className={classes.FullWidth}>Complete Activity</IonButton>
+                                                <IonButton fill="clear" className={classes.FullWidth}>Detalles</IonButton>
                                             </IonItem>
                                         </IonCardContent>
                                     </IonCard>
@@ -47,4 +43,4 @@ const AllActivities: React.FC=()=>{
         </IonPage>
     );
 }
-export default AllActivities;
+export default AllPokemons;

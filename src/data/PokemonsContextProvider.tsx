@@ -1,55 +1,80 @@
-import React, { useEffect, useState } from "react";
-import PokemonsContext, { Pokemon, PokemonsContextModel } from "./pokemons-context";
-interface Props{
-    children:React.ReactNode;
+import React,{useEffect, useState} from "react";
+import PokemonsContext, { PokemonContextModel, Pokemon} from "./pokemons-context";
+interface Props {
+    children: React.ReactNode;
 }
-const PokemonContextProvider:React.FC<Props>=(props)=>{
-    const [pokemons,setPokemon]=useState<Pokemon[]>([{
-        base_experience:10,
-        id:'1',
-        name:'prueba',
-        weight:10,
-        type:'tipo',
-        imgUrl:'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
-    }]);
-    // useEffect(()=>{
-    //     fetch('https://pokeapi.co/api/v2/pokemon/')
-    //     .then(response => response.json())
-    //     .then(data =>{
-    //         let result = data.results;
-    //         console.log('RESULTADOS GENERALES',result);
-    //         result.forEach((element:any)=> {
-    //             fetch(element.form.url)
-    //             .then(res=>res.json())
-    //             .then(data=>{
-    //                 let img:string=data.results.front_default
-    //                 console.log('Imagen de pokemon: '+element.name,'Imagen: '+img);
-    //                 let pokemon:Pokemon={
-    //                     id:element.id,
-    //                     base_experience:element.base_experience,
-    //                     name:element.name,
-    //                     type:element.type,
-    //                     weight:element.weight,
-    //                     imgUrl:img
-    //                 };
-    //                 setPokemon(curreP=>{
-    //                     return[...curreP,pokemon];
-    //                 });
-    //             });
-    //         });
-    //     });
-    // },[]);
-    const detailsPokemon=(id:string)=>{
-
+const PokemonsContextProvider:React.FC<Props>=(props)=>{
+    const [pokemons,setPokemons]=useState<Pokemon[]>([
+        {
+            base_experience:10,
+            id:'1',
+            name:'prueba',
+            weight:10,
+            type:'tipo',
+            imgUrl:'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
+        },
+    ]);
+    useEffect(()=>{
+        let pokemon_base:Pokemon[]=[];
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
+        .then(response => response.json())
+        .then(data =>{
+            let result = data.results;
+            //console.log('RESULTADOS GENERALES',result);
+            result.forEach((element:any)=> {
+                //console.log(element);
+                fetch(element.url)
+                .then(res=>res.json())
+                .then(data=>{
+                    let pokemon:Pokemon={
+                            id:data.id,
+                            base_experience:data.base_experience,
+                            name:data.name,
+                            type:data.type,
+                            weight:data.weight,
+                            imgUrl:''
+                        }
+                    //pokemon_base.push(pokemon);
+                    setPokemons(currPok=>{
+                        return[...currPok,pokemon];
+                    })
+                });
+            });
+        });
+    },[])
+    const addActivity=(title:string,description:string,hour:string)=>{
+        // let imageUrl='';
+        // const newActiviy:Activity={
+        //     id:Math.random().toString(),
+        //     title,
+        //     description,
+        //     hour,
+        //     activityType,
+        //     imageUrl,
+        //     isCompleted:false
+        // }
+        // setActivities(currActivities=>{
+        //     return[...currActivities,newActiviy];
+        // })
     }
-    const pokemonsContext:PokemonsContextModel={
+    const completeActivity=(activityId:string)=>{
+        // setActivities(currActivities=>{
+        //     const updatedActivities =[...currActivities];
+        //     const selectedActivityIndex=activities.findIndex(act=>act.id===activityId);
+        //     const updatedActivity={...updatedActivities[selectedActivityIndex],iscompleted:true};
+        //     updatedActivities[selectedActivityIndex]=updatedActivity;
+        //     return updatedActivities;
+        // });
+    }
+    const pokemonsContext:PokemonContextModel={
         pokemons,
-        detailsPokemon
-    }
+        addActivity,
+        completeActivity
+    };
     return(
         <PokemonsContext.Provider value={pokemonsContext}>
             {props.children}
         </PokemonsContext.Provider>
     )
 };
-export default PokemonContextProvider;
+export default PokemonsContextProvider;

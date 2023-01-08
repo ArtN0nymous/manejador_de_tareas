@@ -1,4 +1,5 @@
 import React from "react";
+//export type ActiviyType='rest'|'work'|'hobby';
 export interface Pokemon{
     base_experience:number,
     id:string,
@@ -7,13 +8,14 @@ export interface Pokemon{
     type:string,
     imgUrl:string
 }
-export interface PokemonsContextModel{
+export interface PokemonContextModel{
     pokemons:Pokemon[];
-    detailsPokemon:(pokemonId:string)=>void;
+    addActivity:(title:string,description:string,hour:string)=>void;
+    completeActivity:(activityId:string)=>void;
 }
-const PokemonsContext = React.createContext<PokemonsContextModel>({
+const PokemonsContext=React.createContext<PokemonContextModel>({
     pokemons:[],
-    detailsPokemon:()=>{}
+    addActivity:()=>{},
+    completeActivity:()=>{}
 });
-
 export default PokemonsContext;
