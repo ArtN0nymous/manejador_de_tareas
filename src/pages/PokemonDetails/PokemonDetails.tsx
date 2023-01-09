@@ -1,20 +1,11 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonHeader, IonItem, IonMenuButton, IonPage, IonRow, IonText, IonTitle, IonToolbar } from "@ionic/react";
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonHeader, IonMenuButton, IonPage, IonRow, IonText, IonTitle, IonToolbar } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
-import { Pokemon } from "../../data/pokemons-context";
 //PARA RECIBIR PARAMETROS DESDE OTRAS RUTAS
 interface Props  extends RouteComponentProps<{
     name:string;
 }>{}
 const PokemonDetails:React.FC<Props>=({match})=>{
-    const [state,setState]=useState<Pokemon>({
-        id:'',
-        name:'',
-        base_experience:0,
-        type:'',
-        imgUrl:'',
-        weight:0
-    });
     const [details,setDetails]=useState({
         id:'',
         base_experience:'',

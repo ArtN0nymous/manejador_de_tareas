@@ -59,10 +59,8 @@ const AllPokemons: React.FC=()=>{
                                         <img src={item.imgUrl} alt='pokemon'/>
                                         <IonCardHeader>
                                             <IonCardTitle>{item.name}</IonCardTitle>
-                                            <IonCardSubtitle>Experiencia base: {item.base_experience}</IonCardSubtitle>
                                         </IonCardHeader>
                                         <IonCardContent>
-                                            <p>Tipo: {item.type}</p>
                                             <IonItem lines='none'>
                                                 <IonButton fill="clear" className={classes.FullWidth}>Detalles</IonButton>
                                             </IonItem>
