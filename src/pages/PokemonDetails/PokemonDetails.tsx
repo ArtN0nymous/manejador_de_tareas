@@ -21,7 +21,7 @@ const PokemonDetails:React.FC<Props>=({match})=>{
         name:'',
         weight:0,
         type:'',
-        imgUrl:'',
+        imgUrl:'https://www.senacrs.com.br/assets/images/default-image.png',
         description:'',
         stats:{
             hp:0,
@@ -57,7 +57,7 @@ const PokemonDetails:React.FC<Props>=({match})=>{
                     setDetails({
                         id:data.id,
                         base_experience:data.base_experience,
-                        name:data.name,
+                        name:data.name.toUpperCase(),
                         type:tipo,
                         weight:data.weight,
                         imgUrl:imgData.sprites.front_default,
@@ -92,15 +92,17 @@ const PokemonDetails:React.FC<Props>=({match})=>{
                     <IonCard>
                         <img src={details.imgUrl} alt='pokemon' style={{width:300,height:300}}/>
                         <IonCardHeader>
-                            <IonCardTitle>{details.name}</IonCardTitle>
-                            <IonCardSubtitle>Experiencia base: {details.base_experience}</IonCardSubtitle>
+                            <IonCardTitle>
+                                <h1>{details.name}</h1>
+                            </IonCardTitle>
+                            <IonCardSubtitle>Base experience: {details.base_experience}</IonCardSubtitle>
                             <div className="ion-text-justify">
                                 <IonText>{details.description}</IonText>
                             </div>
                         </IonCardHeader>
                         <IonCardContent>
-                            <p>Tipo: {details.type}</p>
-                            <p>Peso: {details.weight}</p>
+                            <p>Type: {details.type}</p>
+                            <p>Weight: {details.weight}</p>
                             <h1>Stats:</h1>
                             <p>HP: {details.stats.hp}</p>
                             <p>Defense: {details.stats.defense}</p>

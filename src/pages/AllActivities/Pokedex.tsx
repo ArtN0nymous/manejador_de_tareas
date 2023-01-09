@@ -8,7 +8,7 @@ const AllPokemons: React.FC=()=>{
     const [state,setState]=useState([{
         id:'',
         type:'',
-        imgUrl:'',
+        imgUrl:'https://www.senacrs.com.br/assets/images/default-image.png',
         base_experience:'',
         name:''
     }]);
