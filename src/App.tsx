@@ -22,7 +22,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import AllActivities from './pages/AllActivities/Pokedex';
 import AddActivities from './pages/AddActivities/AddActivities';
-import {bodyOutline,addCircle, playCircle, bookmarks} from 'ionicons/icons';
+import {addCircle, playCircle, bookmarks} from 'ionicons/icons';
 import PokemonsContextProvider from './data/PokemonsContextProvider';
 import AllPokemons from './pages/AllPokemons/AllPokemons';
 import PokemonDetails from './pages/PokemonDetails/PokemonDetails';

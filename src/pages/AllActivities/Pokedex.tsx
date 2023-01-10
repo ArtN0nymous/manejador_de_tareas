@@ -1,10 +1,10 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonMenuButton, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar } from "@ionic/react";
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonMenuButton, IonPage, IonRow, IonSearchbar, IonToolbar } from "@ionic/react";
 import { search } from "ionicons/icons";
 import React, { useState,useContext, useEffect } from "react";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import PokemonsContext from "../../data/pokemons-context";
 // estilos personalizados
-import classes from './pokedex.module.css';
+//import classes from './pokedex.module.css';
 const AllPokemons: React.FC=()=>{
     const pokemonsCtxt=useContext(PokemonsContext);
     //UTILIZAMOS HISTORY PARA ACCEDER A LAS RUTAS (se debe importar)
