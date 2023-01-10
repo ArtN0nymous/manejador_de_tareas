@@ -27,6 +27,7 @@ const PokemonDetails:React.FC<Props>=({match})=>{
     useEffect(()=>{
         fetch('https://pokeapi.co/api/v2/pokemon/'+match.params.name).then(result=>result.json()).then(data=>{
             fetch(data.forms[0].url).then(result=>result.json()).then(imgData=>{
+                console.log('name: '+match.params.name,'FormsUrl: '+data.forms[0].url,'Species :'+data.species.url);
                 let tipo='';
                 for(var i=0;i<data.types.length;i++){
                     tipo+=" "+data.types[i].type.name;
@@ -42,6 +43,7 @@ const PokemonDetails:React.FC<Props>=({match})=>{
                         const element = desc.flavor_text_entries[i];
                         if(element.language.name==='es'){
                             description=element.flavor_text;
+                            console.log('Description: '+description);
                             break;
                         }
                     }

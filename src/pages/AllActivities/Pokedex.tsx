@@ -1,10 +1,14 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonMenuButton, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar } from "@ionic/react";
+import { search } from "ionicons/icons";
 import React, { useState,useContext, useEffect } from "react";
+import { Redirect, useHistory } from "react-router";
 import PokemonsContext from "../../data/pokemons-context";
 // estilos personalizados
 import classes from './pokedex.module.css';
 const AllPokemons: React.FC=()=>{
     const pokemonsCtxt=useContext(PokemonsContext);
+    //UTILIZAMOS HISTORY PARA ACCEDER A LAS RUTAS (se debe importar)
+    const history = useHistory();
     const [state,setState]=useState([{
         id:'',
         type:'',
@@ -39,6 +43,22 @@ const AllPokemons: React.FC=()=>{
         }
         setState(unicos);
     },[pokemonsCtxt]);
+    const [name,setName]=useState('');
+    //recibimos el evento del input y obtenemos el valor
+    const validate = (ev: Event) => {
+        const value = (ev.target as HTMLInputElement).value;
+        setName(value);
+      };
+    function Search(){
+        if(name!==""){
+            fetch("https://pokeapi.co/api/v2/pokemon/"+name)
+            .then(result=>result.json()).then(data=>{
+                history.push("/PokemonDetails/"+name);
+            }).catch((error)=>{
+                alert("Pokemon no encontrado");
+            });
+        }
+    }
     return(
         <IonPage>
             <IonHeader>
@@ -46,7 +66,10 @@ const AllPokemons: React.FC=()=>{
                     <IonButton slot="start">
                         <IonMenuButton/>
                     </IonButton>
-                    <IonTitle>Pokedex</IonTitle>
+                    <IonSearchbar onIonInput={(event)=>validate(event)}/>
+                    <IonButton slot="end" onClick={()=>Search()}>
+                        <IonIcon icon={search}/>
+                    </IonButton>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
@@ -61,9 +84,6 @@ const AllPokemons: React.FC=()=>{
                                             <IonCardTitle>{item.name}</IonCardTitle>
                                         </IonCardHeader>
                                         <IonCardContent>
-                                            <IonItem lines='none'>
-                                                <IonButton fill="clear" className={classes.FullWidth}>Detalles</IonButton>
-                                            </IonItem>
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
