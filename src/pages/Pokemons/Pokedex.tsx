@@ -59,6 +59,17 @@ const AllPokemons: React.FC=()=>{
             });
         }
     }
+    const [rango,setRango]=useState({
+        hasta:100,
+        desde:0
+    })
+    function mostrarMas(num:number){
+        let hasta = rango.hasta+num;
+        let desde = rango.desde+num;
+        console.log('Mostrando desde: '+desde+' Hasta: '+hasta);
+        pokemonsCtxt.leerP(hasta,desde);
+        setRango({...rango,hasta:hasta,desde:desde});
+    }
     return(
         <IonPage>
             <IonHeader>
@@ -91,6 +102,11 @@ const AllPokemons: React.FC=()=>{
                         ))
                     }
                 </IonGrid>
+                <IonRow>
+                    <IonCol className="ion-text-center">
+                        <IonButton onClick={()=>mostrarMas(100)}>Mostrar más</IonButton>
+                    </IonCol>
+                </IonRow>
             </IonContent>
         </IonPage>
     );

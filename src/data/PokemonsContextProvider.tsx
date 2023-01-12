@@ -7,7 +7,14 @@ interface Props {
 const PokemonsContextProvider:React.FC<Props>=(props)=>{
     const [pokemons,setPokemons]=useState<Pokemon[]>([]);
     useEffect(()=>{
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0')
+        leerP(100,0);
+    },[])
+    const leerP=(hasta:number,desde:number)=>{
+        //RESETEA ARRGELO DE POKEMONS PARA CARGAR SOLO LOS QUE ESTAN EN EL RANGO ASIGNADO
+        // DE LO CONTRARIO SIMPLEMENTE SE AÑADEN A LA COLECCION YA EXISTENTE
+        let p:Pokemon[]=[]
+        setPokemons(p);
+        fetch('https://pokeapi.co/api/v2/pokemon?limit='+(hasta??100)+'&offset='+(desde??0))
         .then(response => response.json())
         .then(data =>{
             let result = data.results;
@@ -37,35 +44,10 @@ const PokemonsContextProvider:React.FC<Props>=(props)=>{
                 });
             });
         });
-    },[])
-    const addActivity=(title:string,description:string,hour:string)=>{
-        // let imageUrl='';
-        // const newActiviy:Activity={
-        //     id:Math.random().toString(),
-        //     title,
-        //     description,
-        //     hour,
-        //     activityType,
-        //     imageUrl,
-        //     isCompleted:false
-        // }
-        // setActivities(currActivities=>{
-        //     return[...currActivities,newActiviy];
-        // })
-    }
-    const completeActivity=(activityId:string)=>{
-        // setActivities(currActivities=>{
-        //     const updatedActivities =[...currActivities];
-        //     const selectedActivityIndex=activities.findIndex(act=>act.id===activityId);
-        //     const updatedActivity={...updatedActivities[selectedActivityIndex],iscompleted:true};
-        //     updatedActivities[selectedActivityIndex]=updatedActivity;
-        //     return updatedActivities;
-        // });
     }
     const pokemonsContext:PokemonContextModel={
         pokemons,
-        addActivity,
-        completeActivity
+        leerP
     };
     return(
         <PokemonsContext.Provider value={pokemonsContext}>

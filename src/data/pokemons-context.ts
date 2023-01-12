@@ -10,12 +10,10 @@ export interface Pokemon{
 }
 export interface PokemonContextModel{
     pokemons:Pokemon[];
-    addActivity:(title:string,description:string,hour:string)=>void;
-    completeActivity:(activityId:string)=>void;
+    leerP:(inicio:number,final:number)=>void;
 }
 const PokemonsContext=React.createContext<PokemonContextModel>({
     pokemons:[],
-    addActivity:()=>{},
-    completeActivity:()=>{}
+    leerP:()=>{},
 });
 export default PokemonsContext;

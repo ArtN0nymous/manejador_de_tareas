@@ -20,7 +20,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import AllActivities from './pages/AllActivities/Pokedex';
+import AllPokemons from './pages/Pokemons/Pokedex';
 import {bookmarks} from 'ionicons/icons';
 import PokemonsContextProvider from './data/PokemonsContextProvider';
 import PokemonDetails from './pages/PokemonDetails/PokemonDetails';
@@ -51,7 +51,7 @@ const App: React.FC = () => (
       {/* se creó un contexto y se envolvió la funcionalidad de la aplicacion con este mismo */}
       <PokemonsContextProvider>
         <IonRouterOutlet id='scheduleAppM1'>
-            <Route path="/Pokemons" component={AllActivities}/>
+            <Route path="/Pokemons" component={AllPokemons}/>
             <Route path="/PokemonDetails/:name" component={PokemonDetails}/>
             <Redirect to="/Pokemons"/>
         </IonRouterOutlet>
